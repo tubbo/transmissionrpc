@@ -87,11 +87,12 @@ func (c *Client) TorrentAdd(ctx context.Context, payload TorrentAddPayload) (tor
 }
 
 // TorrentAddPayload represents the data to send in order to add a torrent.
-// https://github.com/transmission/transmission/blob/3.00/extras/rpc-spec.txt#L396
+// https://github.com/transmission/transmission/blob/4.0.0/docs/rpc-spec.md#34-adding-a-torrent
 type TorrentAddPayload struct {
 	Cookies           *string `json:"cookies"`           // pointer to a string of one or more cookies
 	DownloadDir       *string `json:"download-dir"`      // path to download the torrent to
 	Filename          *string `json:"filename"`          // filename or URL of the .torrent file
+	Labels			  []string `json:"labels"`			 // array of string labels to add to the torrent
 	MetaInfo          *string `json:"metainfo"`          // base64-encoded .torrent content
 	Paused            *bool   `json:"paused"`            // if true, don't start the torrent
 	PeerLimit         *int64  `json:"peer-limit"`        // maximum number of peers
